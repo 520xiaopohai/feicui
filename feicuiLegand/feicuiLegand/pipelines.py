@@ -19,3 +19,13 @@ class FeicuiXinpinPipeline(object):
         # 插入数据库
         self.db.insert(item)
         return item
+
+
+class FeicuiSuggestPipeline(object):
+    def __init__(self):
+        self.db = DBHelper()
+
+    def process_item(self, item, spider):
+        # 插入数据库
+        self.db.insert(item)
+        return item

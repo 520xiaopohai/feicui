@@ -1,3 +1,3 @@
 from scrapy import cmdline
 
-cmdline.execute("scrapy crawl xinpin".split())
+cmdline.execute("scrapy crawl ownerSuggest".split())

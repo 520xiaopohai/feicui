@@ -29,7 +29,13 @@ class DBHelper():
 
     #创建数据库
     def insert(self, item):
-        sql = "insert into xinpin(acttitle,hhao,market_price,image_urls,content) values(%s,%s,%s,%s,%s)"
+
+        sql = ''
+        if item['table_name'] == 'suggest':
+            sql = "insert into suggest(acttitle,hhao,market_price,image_urls,content,video_url) values(%s,%s,%s,%s,%s,%s)"
+        elif item['table_name'] == 'xinpin':
+            sql = "insert into xinpin(acttitle,hhao,market_price,image_urls,content) values(%s,%s,%s,%s,%s)"
+
         #调用插入的方法
         query = self.dbpool.runInteraction(self._conditional_insert, sql, item)
         #调用异常处理方法
@@ -41,6 +47,8 @@ class DBHelper():
     def _conditional_insert(self, tx, sql, item):
         params = (item['acttitle'], item['hhao'], item['market_price'],
                   item['image_urls'], item['desc'])
+        if item['table_name'] == 'suggest':
+            params = (*params,item['video_url'])
         tx.execute(sql, params)
 
     #错误处理方法

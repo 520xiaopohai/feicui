@@ -14,8 +14,20 @@ class FeicuilegandItem(scrapy.Item):
     pass
 
 class FeucuiXinpin(scrapy.Item):
+    table_name = scrapy.Field()
     acttitle = scrapy.Field()
     hhao = scrapy.Field()
     market_price = scrapy.Field()
     image_urls = scrapy.Field()
     desc = scrapy.Field()
+    base_url = scrapy.Field()
+
+class FeucuiSuggest(scrapy.Item):
+    table_name = scrapy.Field()
+    acttitle = scrapy.Field()
+    hhao = scrapy.Field()
+    market_price = scrapy.Field()
+    image_urls = scrapy.Field()
+    desc = scrapy.Field()
+    video_url = scrapy.Field()
+    base_url = scrapy.Field()
